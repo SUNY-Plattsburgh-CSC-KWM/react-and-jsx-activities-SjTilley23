@@ -30,7 +30,29 @@
           <Counter start={0} />
           <Counter start={123} />
           <Counter start={-64} />
+          <Addition start={0} />
         </div>
+      );
+    }
+
+    function Addition({start}) {
+      const [counter, setCounter] = React.useState(start);
+      return (
+        <main>
+          <p>Calculator {counter}</p>
+          <button onClick={() => setCounter((value) => value + 1)}>
+            Add 1
+          </button>
+          <button onClick={() => setCounter((value) => value - 1)}>
+            Subtract 1
+          </button>
+          <button onClick={() => setCounter((value) => value * 2)}>
+            Multiply by 2
+          </button>
+          <button onClick={() => setCounter((value) => value / 2)}>
+            Divide by 2
+          </button>
+        </main>
       );
     }
 

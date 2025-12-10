@@ -12,7 +12,7 @@
   <script src="react/babel.js"></script>
   <script type="text/babel">
 
-    function Counter({ start }) {
+function CounterS({ start }) {
         const [counter, setCounter] = React.useState(start);
 
 	React.useEffect(() => {
@@ -30,20 +30,72 @@
 	    
         return (
 	   <main>
-	      <p>Counter: {counter}</p>
+	      <p>Seconds Timer: {counter}</p>
 		<button onClick={() => setCounter(0)}>
 	          Reset
               </button>
 	   </main>
 	);
-    }
+}
+
+function CounterM({ start }) {
+        const [counter, setCounter] = React.useState(start);
+
+	React.useEffect(() => {
+            const tickTock = () => {
+		setCounter((value) => value + 1);
+            }
+	    
+            const timer = setInterval(tickTock, 60000);
+
+	    return () => {
+		clearInterval(timer);
+	    };
+
+	}, []);  // [] tells it to only run once
+	    
+        return (
+	   <main>
+	      <p>Minutes Timer: {counter}</p>
+		<button onClick={() => setCounter(0)}>
+	          Reset
+              </button>
+	   </main>
+	);
+}
+
+function CounterH({ start }) {
+        const [counter, setCounter] = React.useState(start);
+
+	React.useEffect(() => {
+            const tickTock = () => {
+		setCounter((value) => value + 1);
+            }
+	    
+            const timer = setInterval(tickTock, 3600000);
+
+	    return () => {
+		clearInterval(timer);
+	    };
+
+	}, []);  // [] tells it to only run once
+	    
+        return (
+	   <main>
+	      <p>Hours Timer: {counter}</p>
+		<button onClick={() => setCounter(0)}>
+	          Reset
+              </button>
+	   </main>
+	);
+}
 
     function App() {
       return (
         <div>
-          <Counter start={0} />
-          <Counter start={123} />
-          <Counter start={-64} />
+          <CounterS start={0} />
+          <CounterM start={0} />
+          <CounterH start={0} />
         </div>
       );
     }
